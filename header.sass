@@ -1,0 +1,215 @@
+.header
+  position: fixed
+  top: 0
+  left: 0
+  width: 100%
+  background: #fff
+  transition: all .3s
+  z-index: 99
+  &--shadow
+    box-shadow: 0 0 20px rgba(12, 24, 124, 0.2)
+
+.header__container
+  @extend %container
+  height: 100px
+  display: flex
+  flex-direction: row
+  align-items: center
+  justify-content: space-between
+  padding: 0 12px
+
+.header__logo
+  & img
+    width: 100px
+    height: 40px
+
+.header__nav
+  margin-right: 44px
+  & a
+    font-size: 15px
+    line-height: 18px
+    font-weight: 500
+    color: #fff
+    transition: all .3s
+    &:not(:last-child)
+      margin-right: 28px
+    &:hover
+      color: #000
+    &.active
+      color: #000
+
+.header__main
+  display: flex
+  flex-direction: row
+  align-items: center
+
+.hamburger
+  display: none
+
+
+@media #{$breakpointTablet}
+
+  .header
+    &::after
+      content: ''
+      position: absolute
+      top: -142vmax
+      right: -142vmax
+      width: 284vmax
+      height: 284vmax
+      border-radius: 50%
+      background: #fff
+      box-shadow: 0 0 50px rgba(7, 17, 113, 0.1), 0 0 50px rgba(12, 24, 124, 0.14)
+      transform: scale(0)
+      transform-origin: 50% 50%
+      transition: transform 0.5s cubic-bezier(0.755, 0.05, 0.855, 0.06)
+      will-change: transform
+      z-index: -1
+    &--tran
+      & .header__main
+        transition: all .3s linear
+      & .header__nav a
+        transition: all 0.3s cubic-bezier(0, 0.995, 0.99, 1) 0.3s
+      & .header__btn
+        transition: all 0.3s cubic-bezier(0, 0.995, 0.99, 1) 0.3s
+    &.is-active
+      &::after
+        transform: scale(1)
+      & .header__main
+        visibility: visible
+      & .header__nav a
+        opacity: 1
+        transform: translateY(0)
+      & .header__btn
+        opacity: 1
+        transform: translateY(0)
+
+  .header__container
+    height: 60px
+
+  .header__logo
+    & img
+      width: 80px
+      height: 35px
+
+  .header__main
+    position: fixed
+    top: 60px
+    left: 0
+    width: 100%
+    height: 100%
+    display: flex
+    flex-direction: column
+    align-items: center
+    visibility: hidden
+
+  .header__nav
+    width: 100%
+    display: flex
+    flex-direction: column
+    align-items: center
+    padding-top: 68px
+    margin-right: 0
+    margin-bottom: 28px
+    z-index: 10
+    & a
+      @include text-subtitle-18
+      width: 100%
+      display: block
+      color: #fff
+      text-align: center
+      padding: 16px 0
+      opacity: 0
+      transition: none
+      &:not(:last-child)
+        margin-right: 0
+      &.active
+        color: #000
+
+  @for $i from 1 through 5
+    .header__nav a:nth-child(#{$i})
+      transform: translateY(-40px * $i)
+
+  .hamburger
+    position: relative
+    right: -14px
+    width: 52px
+    height: 50px
+    display: block
+    cursor: pointer
+    transition-property: opacity, filter
+    transition-duration: 0.15s
+    transition-timing-function: linear
+    font: inherit
+    color: inherit
+    text-transform: none
+    background-color: transparent
+    border: 0
+    margin: 0
+    padding: 5px 6px
+    overflow: visible
+
+  .hamburger-inner
+    background-color: #000
+    &::before, &::after
+      background-color: #000
+
+  .hamburger-box
+    width: 40px
+    height: 24px
+    display: inline-block
+    position: relative
+
+  .hamburger-inner
+    display: block
+    top: 50%
+    left: 50%
+    margin-left: -7px
+    margin-top: -2px
+    width: 14px
+    height: 2.8px
+    background-color: #001A49
+    border-radius: 4px
+    position: absolute
+    transition-property: transform
+    transition-duration: 0.15s
+    transition-timing-function: ease
+    &::before, &::after
+      width: 14px
+      height: 2.8px
+      background-color: #001A49
+      border-radius: 4px
+      position: absolute
+      transition-property: transform
+      transition-duration: 0.15s
+      transition-timing-function: ease
+    &::before, &::after
+      content: ""
+      display: block
+    &::before
+      top: -5px
+    &::after
+      bottom: -5px
+
+  .hamburger--3dx
+    & .hamburger-box
+      perspective: 80px
+    & .hamburger-inner
+      transition: transform 0.15s cubic-bezier(0.645, 0.045, 0.355, 1), background-color 0s 0.1s cubic-bezier(0.645, 0.045, 0.355, 1)
+      &::before, &::after
+        transition: transform 0s 0.1s cubic-bezier(0.645, 0.045, 0.355, 1)
+    &.is-active .hamburger-inner
+      background-color: transparent !important
+      transform: rotateY(180deg)
+      &::before
+        transform: translate3d(0, 5px, 0) rotate(45deg)
+      &::after
+        transform: translate3d(0, -5px, 0) rotate(-45deg)
+
+
+@media only screen and (max-width: 812px) and (orientation: landscape)
+
+  .header__main
+    height: calc(100% - 60px)
+    padding-bottom: 60px
+    overflow-y: scroll
