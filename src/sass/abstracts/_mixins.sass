@@ -1,0 +1,30 @@
+%container
+  width: 100%
+  max-width: 1200px
+  margin: 0 auto
+  @media #{$breakpointTablet}
+    padding: 0 16px
+
+@mixin btn
+  width: 100%
+  max-width: 150px
+  height: 40px
+  display: flex
+  align-items: center
+  justify-content: center
+  flex-shrink: 0
+  background: linear-gradient(180deg, #FFAE45 0%, #E88300 100%)
+  font-size: 14px
+  line-height: 24px
+  font-weight: 400
+  color: #fff
+  border-radius: 4px
+  transition: all .3s
+  cursor: pointer
+  &:hover
+    background: linear-gradient(180deg, #FFAE45 0%, #E88300 100%)
+  &:active
+    background: linear-gradient(180deg, #FFAE45 0%, #E88300 100%)
+
+%btn
+  @include btn

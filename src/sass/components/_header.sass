@@ -3,7 +3,7 @@
   top: 0
   left: 0
   width: 100%
-  background: #fff
+  background: grey
   transition: all .3s
   z-index: 99
   &--shadow
@@ -16,7 +16,6 @@
   flex-direction: row
   align-items: center
   justify-content: space-between
-  padding: 0 12px
 
 .header__logo
   & img
@@ -24,7 +23,6 @@
     height: 40px
 
 .header__nav
-  margin-right: 44px
   & a
     font-size: 15px
     line-height: 18px
@@ -37,11 +35,6 @@
       color: #000
     &.active
       color: #000
-
-.header__main
-  display: flex
-  flex-direction: row
-  align-items: center
 
 .hamburger
   display: none
@@ -66,20 +59,20 @@
       will-change: transform
       z-index: -1
     &--tran
-      & .header__main
+      & .header__nav
         transition: all .3s linear
-      & .header__nav a
-        transition: all 0.3s cubic-bezier(0, 0.995, 0.99, 1) 0.3s
+        & a
+          transition: all 0.3s cubic-bezier(0, 0.995, 0.99, 1) 0.3s
       & .header__btn
         transition: all 0.3s cubic-bezier(0, 0.995, 0.99, 1) 0.3s
     &.is-active
       &::after
         transform: scale(1)
-      & .header__main
+      & .header__nav
         visibility: visible
-      & .header__nav a
-        opacity: 1
-        transform: translateY(0)
+        & a
+          opacity: 1
+          transform: translateY(0)
       & .header__btn
         opacity: 1
         transform: translateY(0)
@@ -92,7 +85,7 @@
       width: 80px
       height: 35px
 
-  .header__main
+  .header__nav
     position: fixed
     top: 60px
     left: 0
@@ -101,21 +94,15 @@
     display: flex
     flex-direction: column
     align-items: center
-    visibility: hidden
-
-  .header__nav
-    width: 100%
-    display: flex
-    flex-direction: column
-    align-items: center
     padding-top: 68px
-    margin-right: 0
     margin-bottom: 28px
+    visibility: hidden
     z-index: 10
     & a
-      @include text-subtitle-18
       width: 100%
       display: block
+      font-size: 16px
+      line-height: 24px
       color: #fff
       text-align: center
       padding: 16px 0
@@ -209,7 +196,7 @@
 
 @media only screen and (max-width: 812px) and (orientation: landscape)
 
-  .header__main
+  .header__nav
     height: calc(100% - 60px)
     padding-bottom: 60px
     overflow-y: scroll
